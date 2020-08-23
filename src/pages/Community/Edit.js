@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Container, Form, Button, Modal, Table,Col} from "react-bootstrap";
 import { useHistory,Link } from "react-router-dom";
 import ReactQuill from 'react-quill'
@@ -19,7 +19,6 @@ const Edit = () => {
     const [title, setTitle] = useState('')
     const [creationDate, setCreationDate] =useState('')
 
-    // const  newValue = value.replace(/<(\/span|span)([^>]*)>/gi,"");
 
 
     const handleShow = () => setShow(true);
@@ -99,29 +98,7 @@ const Edit = () => {
                       .catch((err)=>{
                           throw err;
                       })};
-                break;
-        }
-        //
-        // if (
-        //     setTitle === "" ||
-        //     category === "" ||
-        //       // questionCategory === "" ||
-        //       // customerCategory === "" || //wtf?
-        //     medCategory === "" ||
-        //     value === ""
-        // ) {
-        //     alert("입력창을 다채워주세요");
-        // } else {
-        //     console.log('axios 들어옴')
-        //     axios
-        //         .post(`http://localhost:8080/board/update`,comudata)
-        //         .then((res)=>{
-        //             console.log(res.data);
-        //             window.location.href ="/Community"
-        //         })
-        //         .catch((err)=>{
-        //             throw err;
-        //         })};
+                break;}
         }
 
     const modules = {
@@ -191,7 +168,6 @@ const Edit = () => {
                               onChange={(e) => setCustomerCategory(e.target.value)}
                             >
                                 <option>*서비스구분</option>
-                                <option>전체보기</option>
                                 <option>서비스</option>
                                 <option>결제</option>
                                 <option>오류</option>

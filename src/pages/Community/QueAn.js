@@ -2,20 +2,51 @@ import React, {useState,useEffect} from 'react';
 import './community.css'
 import {Button, Table,Form,Col} from "react-bootstrap";
 import axios from 'axios'
-import {Link, useHistory} from "react-router-dom";
-import {MDBCol, MDBIcon, MDBPageItem, MDBPageNav, MDBPagination, MDBRow} from "mdbreact";
+import {useHistory} from "react-router-dom";
+import {MDBIcon} from "mdbreact";
+import Pagination from "./Pagination";
+import Posts from "./Post";
 
 
 const QueAn = () => {
   const [postList, setPostList] = useState([])
   const [medCategory, setMedCategory] = useState('')
   const [questionCategory, setQuestionCategory] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const [sendList, setSendList] = useState([])
   const [creationDate, setCreationDate] = useState('')
   const [click, setClick] = useState(0);
   const [state, setState] = useState('')
   const history = useHistory()
+
+//현재페이지
+  const [postsPerPage] = useState(10)
+  //한 페이지에서 보여줄 수 있는 postList 수
+  const [loading, setLoading] = useState(false)
+  const indexOfLastPost = currentPage * postsPerPage;
+  //해당 페이지에서 마지막 postList의 index 번호
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  //해당 페이지에서 첫번째 post의 index 번호
+  const currentPosts = sendList.slice(indexOfFirstPost, indexOfLastPost);
+  // 각 페이지에서 보여질 포스트 배열
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const nextPage = () => {
+    if (currentPage < currentPosts.length) {
+      setCurrentPage(currentPage + 1);
+    } else if (postsPerPage < currentPosts.length) {
+      setCurrentPage(currentPage + 1);
+    } else {
+      setCurrentPage(currentPage);
+    }
+  };
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
 
 
 
@@ -50,33 +81,6 @@ const QueAn = () => {
     }
   }
 
-  const handleClick=()=>{
-    setState(state.value+1);
-  }
-
-
-  const getBoard = () =>{
-    console.log(questionCategory)
-    axios
-      .get(`http://localhost:8080/board/list`)
-      .then((res)=>{
-        //sessionStorage.setItem("board",JSON.stringify(res.data))
-        //console.log(res.data)
-        setPostList(res.data)
-        // window.location.href="/board/Fix"
-      })
-      .catch((err)=>{
-        throw err;
-      })
-  }
-  const getPost = (e,value)=>{
-    e.preventDefault()
-    alert(value)
-    //sessionStorage.setItem("title",value)
-    window.location.href="/Review"
-  }
-
-
 
   return (
     <>
@@ -101,69 +105,32 @@ const QueAn = () => {
                 <option>오류질문</option>
               </select>
             </th>
-            <th>
-              게시물 제목 검색:
-              <Form.Row>
-                <Col className="searching" >
-                  <Form.Control  type="text" placeholder="검색어 입력" />
-                </Col>
-              </Form.Row>
-            </th>
+            <th className="form-select-title">게시물 제목</th>
+
             <th className="form-select">등록날짜</th>
             {/*<th className="form-select">조회수</th>*/}
-            <th className="form-select">진행상황</th>
+            <th className="form-select">조회수</th>
           </tr>
           </thead>
           <tbody>
-          {sendList && sendList.reverse().map((info,i)=>(
-            <tr key={i}>
-              <td>{i+1}</td>
-              <td>empty</td>
-              {/*<td>{info.user.userId}</td>*/}
-              <td>{info.questionCategory}</td>
-              <td id="title" onClick={()=>setClick(click+1)}>
-                <Link to={`/Community/QAReview/${info.boardNo}`}>{info.title}</Link>
-              </td>
-              {/*<td>{info.content}</td>*/}
-              <td>{info.creationDate}</td>
-              <td>{info.click}</td>
-            </tr>
-          ))}
+          <Posts sendList={currentPosts} loading={loading} cate={"questionCategory"}/>
+
           </tbody>
         </Table>
 
         <div className="button-right">
-          <Button variant="outline-dark " onClick={()=>{history.push('/Edit')}}><MDBIcon far icon="edit" />글쓰기</Button>
+          <Button variant="outline-blue " onClick={()=>{history.push('/Edit')}}><MDBIcon far icon="edit" />글쓰기</Button>
         </div>
-
-        <div>
-          <MDBRow>
-            <MDBCol>
-              <MDBPagination className="mb-5">
-                <MDBPageItem>
-                  <MDBPageNav aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </MDBPageNav>
-                </MDBPageItem>
-                <MDBPageItem>
-                  <MDBPageNav>
-                    1
-                  </MDBPageNav>
-                </MDBPageItem>
-                <MDBPageItem>
-                  <MDBPageNav>2</MDBPageNav>
-                </MDBPageItem>
-                <MDBPageItem>
-                  <MDBPageNav>3</MDBPageNav>
-                </MDBPageItem>
-                <MDBPageItem>
-                  <MDBPageNav aria-label="Previous">
-                    <span aria-hidden="true">&raquo;</span>
-                  </MDBPageNav>
-                </MDBPageItem>
-              </MDBPagination>
-            </MDBCol>
-          </MDBRow>
+        <div
+          className="pagiantion-comu"
+        >
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={sendList.length}
+          paginate={paginate}
+          nextPage={nextPage}
+          prevPage={prevPage}
+        />
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Container, Form, Button, Table,} from "react-bootstrap";
+import {Container, Button, Table,} from "react-bootstrap";
 import 'react-quill/dist/quill.snow.css';
 import './styles.css'
 import './community.css'
@@ -9,7 +9,7 @@ import ReactQuill from "react-quill";
 import {MDBIcon} from "mdbreact";
 
 const Review = ({match}) => {
-  // const [postList, setPostList] = useState('')
+  console.log(match)
   const [content, setContent] = useState('')
   const [title, setTitle] = useState('')
   const [boardNo, setBoardNo] = useState('')
@@ -106,20 +106,8 @@ const Review = ({match}) => {
 
   return (
     <>
-      {/*<h2 style={{'display': 'hidden'}}>BoardNo : {boardNo}</h2>*/}
-      {/*<h2>BoardNo : {boardNo}</h2>*/}
-      {/*/!*<h2>localDate : {creationDate(LocalDateTime.now())}</h2>*!/*/}
-      {/*<button onClick={()=>setClick(click+1)}>click me! : {click}</button>*/}
-      {/*<h2>CreateDate : {creationDate}</h2>*/}
-
       <Container>
         <div className="Rev-tab">
-          {/*<textPath>*/}
-          {/*  <Link to="/https://twitter.com/realdonaldtrump">*/}
-          {/*    Donald J. Trump @realDonaldTrump 님 게시글*/}
-          {/*  </Link>*/}
-          {/*</textPath>*/}
-
           <Table striped bordered hover size="sm"
                  value={content}
                  readOnly={readOnly}
@@ -135,7 +123,6 @@ const Review = ({match}) => {
 
                   {!readOnly && (
                     <input
-
                       value={title}
                       onChange={e=>setTitle(e.target.value)}
                     />)}
@@ -172,7 +159,6 @@ const Review = ({match}) => {
                     modules={modules}
                     formats={formats}
                     className="content-font"
-
                   />
                   }
               </td>
@@ -223,15 +209,6 @@ const Review = ({match}) => {
               </div>
             }
           </textPath>
-
-          <Form.Group className="comment">
-            <button className='comment-btn'>댓글 :</button>
-
-            <Form.Control type="text" placeholder="Normal text"/>
-            <Button className="cmt-btn" variant="secondary">
-              <Link to='/Review'>댓글달기</Link>
-            </Button>
-          </Form.Group>
 
         </div>
       </Container>

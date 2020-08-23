@@ -6,11 +6,10 @@ import './community.css'
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import ReactQuill from "react-quill";
-// import {localeData} from "moment";
+import {MDBIcon} from "mdbreact";
 
 const CSReview = ({match}) => {
-
-  // const [postList, setPostList] = useState('')
+  console.log(match)
   const [content, setContent] = useState('')
   const [title, setTitle] = useState('')
   const [boardNo, setBoardNo] = useState('')
@@ -34,8 +33,6 @@ const CSReview = ({match}) => {
         setContent(res.data.content)
         setClick(res.data.click)
         setCreationDate(res.data.creationDate)
-        // setContent(res.data.boardNo)
-        //  setTitle(res.data.title)
       })
       .then((err) => {
         throw err;
@@ -58,7 +55,7 @@ const CSReview = ({match}) => {
       .patch(`http://localhost:8080/board/modify/${boardNo}`, uploadData)
       .then((res) => {
         console.log(res.data);
-        history.push('/Community')
+        history.push('/Community/CustomerServiceCenter')
 
       })
       .catch((err) => {
@@ -83,18 +80,13 @@ const CSReview = ({match}) => {
       .delete(`http://localhost:8080/board/list/delete/${match.params.boardNo}`)
       .then((res) => {
         console.log(res)
-        history.push('/CustomerServiceCenter')
+        history.push('/Communitys/CustomerServiceCenter')
       })
       .catch((err) => {
         throw err;
       })
   }
 
-
-  const [value, setValue] = useState('')
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const modules = {
       toolbar: [
@@ -112,51 +104,7 @@ const CSReview = ({match}) => {
   return (
     <>
       <Container>
-        {/*<div className="Rev-tab">*/}
-        {/*    <Table striped bordered hover size="sm">*/}
-        {/*        <thead>*/}
-        {/*        <tr>*/}
-        {/*            <th style={{width:"180px"}}>사용자</th>*/}
-        {/*            <th>내용</th>*/}
-        {/*            <th style={{width:"150px"}}>게시날짜</th>*/}
-        {/*        </tr>*/}
-        {/*        </thead>*/}
-        {/*        <tbody>*/}
-        {/*        <tr className="Rev">*/}
-        {/*            <td>*/}
-        {/*                <textPath*/}
-        {/*                    className="use-pic">*/}
-        {/*                    Donald J. Trump @realDonaldTrump*/}
-        {/*                </textPath>*/}
-        {/*            </td>*/}
-        {/*            <td>*/}
-
-        {/*                <textPath>*/}
-        {/*                    원하는 서비스를 제공받을수가 없습니다,  오류를 해결해주세요.*/}
-        {/*                </textPath>*/}
-        {/*            </td>*/}
-        {/*            <td>2020.07.31</td>*/}
-        {/*        </tr>*/}
-        {/*        </tbody>*/}
-        {/*    </Table>*/}
-        {/*    <Button className="fix-btn" variant="secondary" >*/}
-        {/*        <Link to='/CSFix'>수정하기</Link></Button>*/}
-        {/*    <Form.Group className="comment">*/}
-        {/*        <button className='comment-btn' >댓글 :</button>*/}
-        {/*        <Form.Control type="text" placeholder="Normal text" />*/}
-        {/*        <Button className="fix-btn" variant="secondary" >*/}
-        {/*            <Link to='/CSReview'>댓글달기</Link>*/}
-        {/*        </Button>*/}
-        {/*    </Form.Group>*/}
-        {/*</div>*/}
-
         <div className="Rev-tab">
-          <textPath>
-            <Link to="/https://twitter.com/realdonaldtrump">
-              Donald J. Trump @realDonaldTrump 님 게시글
-            </Link>
-          </textPath>
-
           <Table striped bordered hover size="sm"
                  value={content}
                  readOnly={readOnly}
@@ -164,20 +112,21 @@ const CSReview = ({match}) => {
           >
             <thead>
             <tr>
-              <th style={{width: "180px"}}>사용자</th>
+              <th className="table-head">사용자</th>
 
-              <th>
+              <th  className="table-search">
                 제목 :
                 {readOnly && title}
 
                 {!readOnly && (
                   <input
+
                     value={title}
                     onChange={e=>setTitle(e.target.value)}
                   />)}
 
               </th>
-              <th style={{width: "150px"}}>게시날짜</th>
+              <th className="table-head">게시날짜</th>
             </tr>
             </thead>
             <tbody>
@@ -185,8 +134,6 @@ const CSReview = ({match}) => {
               <td>
                 <textPath
                   className="use-pic">
-                  <img
-                    src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F7%2F201804241120041041.jpg"/>
                   Donald J. Trump @realDonaldTrump
                 </textPath>
               </td>
@@ -199,6 +146,7 @@ const CSReview = ({match}) => {
                   modules={modules}
                   formats={formats}
                   readOnly
+                  className="content-font"
                 />}
 
                 {!readOnly &&
@@ -208,10 +156,15 @@ const CSReview = ({match}) => {
                   onChange={handleQuill}
                   modules={modules}
                   formats={formats}
+                  className="content-font"
                 />
                 }
               </td>
-              <td>{creationDate}</td>
+              <td
+                className="creationDate"
+              >
+                {creationDate}
+              </td>
             </tr>
             </tbody>
           </Table>
@@ -223,14 +176,15 @@ const CSReview = ({match}) => {
               <Button className="fix-btn" //클릭시 수정하기 모드로 변환
                       variant="outline-dark"
                       onClick={getContent}
-              >수정
+              ><MDBIcon icon="undo-alt" />수정
               </Button>
 
               <Button
                 variant="outline-dark"
                 onClick={deleteBoard}
+                className="btn-font"
               >
-                삭제
+                <MDBIcon icon="backspace" />삭제
               </Button>
             </div>
             }
@@ -244,22 +198,16 @@ const CSReview = ({match}) => {
                         onClick={updateBoard}
                 >수정완료
                 </Button>
-                <Button variant="outline-dark">
+                <Button
+                  variant="outline-dark"
+                  className="btn-font"
+                >
                   <Link to='/Community'>뒤로</Link>
                 </Button>
               </div>
             }
 
           </textPath>
-
-          <Form.Group className="comment">
-            <button className='comment-btn'>댓글 :</button>
-
-            <Form.Control type="text" placeholder="Normal text"/>
-            <Button className="cmt-btn" variant="secondary">
-              <Link to='/Review'>댓글달기</Link>
-            </Button>
-          </Form.Group>
 
         </div>
       </Container>

@@ -5,7 +5,7 @@ import {MainTopPage, MainBottomPage} from './pages/splash-page'
 import {SearchHospital} from './pages/SearchHospital'
 import {Ambulance} from './pages/Ambulance'
 import {TeleMedicine, RtcRoom} from './pages/TeleMedicine'
-import {Community, CustomerServiceCenter, QueAn, Review,CSReview, Edit,QAFix,CSFix,QAReview,Fix } from './pages/Community'
+import {Community,Edit} from './pages/Community'
 import {Login, SignUp, MyPage, UserModify, UserFindID, UserFindPW, UserDelete, } from './pages/Account'
 import './pages/Community/community.css'
 import { Reservation, TelReservation } from "./pages/Reservation";
@@ -28,8 +28,19 @@ const Page = () => (
                     <Ambulance/>
                     <Footer/>
             </Route>
-            
-            <Route path="/Reservation/:hospitalName/:name/:medicalSubject">
+        <Route path="/Edit">
+            <NavBar/>
+            <Edit/>
+            <Footer/>
+        </Route>
+
+        <Route path="/Community">
+            <NavBar/>
+            <Community/>
+            <Footer/>
+        </Route>
+
+        <Route path="/Reservation/:hospitalName/:name/:medicalSubject">
                     <NavBar/>
                     <Route path={`/Reservation/:hospitalName/:name/:medicalSubject`}
                        render = {(props) => <Reservation {...props}/>}>
@@ -45,68 +56,8 @@ const Page = () => (
                     <Footer/>
             </Route>
 
-            <Route path="/CustomerServiceCenter">
-                    <NavBar/>
-                    <CustomerServiceCenter/>
-                    <Footer/>
-            </Route>
 
-            <Route path="/QueAn">
-                    <NavBar/>
-                    <QueAn/>
-                    <Footer/>
-            </Route>
-            <Route path="/QAFix">
-                    <NavBar/>
-                    <QAFix/>
-                    <Footer/>
-            </Route>
-            <Route path="/QAReview">
-                    <NavBar/>
-                    <QAReview/>
-                    <Footer/>
-            </Route>
 
-            <Route path="/Review">
-                <NavBar/>
-                <Route path={`/Community/Review/:boardNo`}
-                       render = {(props) => <Review {...props}/>}>
-                </Route>
-                <Footer/>
-            </Route>
-
-            <Route path="/Fix">
-                <NavBar/>
-                <Route path={`/Community/Fix/:boardNo`}
-                       render = {(props) => <Fix {...props}/>}>
-                </Route>
-                <Footer/>
-            </Route>
-
-            <Route path="/CSReview">
-            <NavBar/>
-            <Route path={`/Community/CSReview/:boardNo`}
-                   render = {(props) => <CSReview {...props}/>}>
-            </Route>
-            <Footer/>
-        </Route>
-            
-            <Route path="/CSFix">
-                    <NavBar/>
-                    <CSFix/>
-                    <Footer/>
-            </Route>
-            <Route path="/Edit">
-                    <NavBar/>
-                    <Edit/>
-                    <Footer/>
-            </Route>
-
-            <Route path="/Community">
-                    <NavBar/>
-                    <Community/>
-                    <Footer/>
-            </Route>
 
             <Route path="/SearchHospital">
                     <NavBar/>
