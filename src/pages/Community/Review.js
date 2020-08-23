@@ -82,7 +82,7 @@ const Review = ({match}) => {
       .delete(`http://localhost:8080/board/list/delete/${match.params.boardNo}`)
       .then((res) => {
         console.log(res)
-        history.push('/Community')
+        history.push('/Community/userBoard')
       })
       .catch((err) => {
         throw err;
@@ -204,7 +204,7 @@ const Review = ({match}) => {
                   variant="outline-dark"
                   className="btn-font"
                 >
-                  <Link to='/Community'>뒤로</Link>
+                  <Link to='/Community/userBoard'>뒤로</Link>
                 </Button>
               </div>
             }

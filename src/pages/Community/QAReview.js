@@ -81,7 +81,7 @@ const QAReview = ({match}) => {
       .delete(`http://localhost:8080/board/list/delete/${match.params.boardNo}`)
       .then((res) => {
         console.log(res)
-        history.push('/Community/CustomerServiceCenter')
+        history.push('/Community/QueAn')
       })
       .catch((err) => {
         throw err;
@@ -203,7 +203,7 @@ const QAReview = ({match}) => {
                 variant="outline-dark"
                 className="btn-font"
               >
-                <Link to='/Community'>뒤로</Link>
+                <Link to='/Community/QueAn'>뒤로</Link>
               </Button>
             </div>
           }

@@ -80,7 +80,7 @@ const CSReview = ({match}) => {
       .delete(`http://localhost:8080/board/list/delete/${match.params.boardNo}`)
       .then((res) => {
         console.log(res)
-        history.push('/Communitys/CustomerServiceCenter')
+        history.push('/Community/CustomerServiceCenter')
       })
       .catch((err) => {
         throw err;
@@ -202,7 +202,7 @@ const CSReview = ({match}) => {
                   variant="outline-dark"
                   className="btn-font"
                 >
-                  <Link to='/Community'>뒤로</Link>
+                  <Link to='/Community/CustomerServiceCenter'>뒤로</Link>
                 </Button>
               </div>
             }

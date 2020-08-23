@@ -333,7 +333,6 @@ const GooMap = () =>{
 
                                                     <span>우편번호 :</span>
                                                         <h2>{selectedPc}</h2><br/>
-
                                                     </div>
                                             </MDBCardText>
                                             </MDBCardBody>

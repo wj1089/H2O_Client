@@ -44,7 +44,7 @@ const Footer = () => (
          <Link className="navColor" href="/SearchHospital">병원찾기</Link>
          <Link className="navColor" href="/Ambulance">응급차 호출</Link>
          <Link className="navColor" href="/TeleMedicine">화상진료</Link>
-         <Link className="navColor" href="/Community">커뮤니티</Link>
+         <Link className="navColor" href="/Community/userBoard">커뮤니티</Link>
        </LinksContainer>
        <SocialLinksContainer>
          <SocialLink href="https://facebook.com">

@@ -37,7 +37,7 @@ const Posts = ({ sendList, loading, cate }) => {
           {/*<td>{info.user.userId}</td>*/}
           <td>{info.questionCategory}</td>
           <td id="title" onClick={()=>setClick(click+1)}>
-            <Link to={`/Community/CSReview/${info.boardNo}`}>{info.title}</Link>
+            <Link to={`/Community/QAReview/${info.boardNo}`}>{info.title}</Link>
           </td>
           {/*<td>{info.content}</td>*/}
           <td>{info.creationDate}</td>
@@ -56,7 +56,7 @@ const Posts = ({ sendList, loading, cate }) => {
             {/*<td>{info.user.userId}</td>*/}
             <td>{info.customerCategory}</td>
             <td id="title" onClick={()=>setClick(click+1)}>
-              <Link to={`/Community/QAReview/${info.boardNo}`}>{info.title}</Link>
+              <Link to={`/Community/CSReview/${info.boardNo}`}>{info.title}</Link>
             </td>
             {/*<td>{info.content}</td>*/}
             <td>{info.creationDate}</td>
