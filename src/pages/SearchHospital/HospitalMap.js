@@ -126,8 +126,8 @@ const HospitalMap = () =>{
       } = usePlacesAutocomplete({
           requestOptions:{
               location: { lat:()=> 37.5525892, lng:()=> 126.9367663 },
-              radius: 200*1000,
-          },
+              radius: 200*1000
+          }
       });
       const handleInput = (e)=>{
           setValue(e.target.value);
@@ -351,12 +351,12 @@ const HospitalMap = () =>{
                                 <div className="tableSize">
                                 <MDBTable>
                                   <br/>
-                               
+
                                 <MDBTableBody>
                                   <tr>
                                     <th className="thColor">{selected.hospitalType}</th>
                                     <td></td>
-                                  
+
                                   </tr>
                                   <tr>
                                     <th className="thColor">전화번호</th>
@@ -384,22 +384,22 @@ const HospitalMap = () =>{
                                   </tr>
                                 </MDBTableBody>
                               </MDBTable>
-                              </div >     
+                              </div >
                               {sessionStorage.userData &&
-                                    <MDBBtn 
+                                    <MDBBtn
                                     style ={{
                                       right : '1.5%'
                                     }}
                                     gradient="blue" onClick={handleReservation} >진료 예약</MDBBtn>
-                              }       
+                              }
                               {!sessionStorage.userData &&
-                                <MDBBtn 
+                                <MDBBtn
                                     style ={{
                                       right : '1.5%'
                                     }}
                                     gradient="blue" onClick={handleBack} >진료 예약</MDBBtn>
                               }
-                              
+
                                 </MDBCardText>
                             </MDBCardBody>
                         </MDBCard>
@@ -460,7 +460,7 @@ const HospitalMap = () =>{
                               {doctor.id > 3 &&
                                 <>
                                 <MDBLink to={`/Reservation/${selected.hospitalName}/${doctor.name}/${doctor.medicalSubject}`}>
-                                <MDBBtn 
+                                <MDBBtn
                                 style = {{
                                   right : '25px',
                                   width : '140px'
@@ -468,7 +468,7 @@ const HospitalMap = () =>{
                                 gradient="purple">방문진료
                                 </MDBBtn>
                                 </MDBLink>
-                                
+
                                 <MDBLink to={`/TelReservation/${selected.hospitalName}/${doctor.name}/${doctor.medicalSubject}`}>
                                 <MDBBtn
                                 style = {{
@@ -479,7 +479,7 @@ const HospitalMap = () =>{
                                 </MDBLink>
                                 </>
                               }
-                              
+
                             </MDBCardBody>
                           </MDBCard>
                         </MDBCol>

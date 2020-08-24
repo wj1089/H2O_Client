@@ -26,6 +26,7 @@ class TeleMedicine extends React.Component {
   componentDidMount() {
     // const socket = io(process.env.REACT_APP_SIGNALING_SERVER);
     const socket = io.connect(process.env.REACT_APP_SIGNALING_SERVER)
+    console.log(process.env.REACT_APP_SIGNALING_SERVER)
     //io(url)
     const component = this;
     this.setState({ socket });

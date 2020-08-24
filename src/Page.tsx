@@ -15,8 +15,6 @@ const Page = () => (
     <Switch>
 
 
-
-
             <Route path="/" exact>
                     <MainTopPage/>
                     <MainBottomPage/>
@@ -28,35 +26,45 @@ const Page = () => (
                     <Ambulance/>
                     <Footer/>
             </Route>
-        <Route path="/Edit">
-            <NavBar/>
-            <Edit/>
-            <Footer/>
-        </Route>
 
-        <Route path="/Community">
-            <NavBar/>
-            <Community/>
-            <Footer/>
-        </Route>
-
-        <Route path="/Reservation/:hospitalName/:name/:medicalSubject">
-                    <NavBar/>
-                    <Route path={`/Reservation/:hospitalName/:name/:medicalSubject`}
-                       render = {(props) => <Reservation {...props}/>}>
-                    </Route>
-                    <Footer/>
+            <Route path="/Edit">
+                <NavBar/>
+                <Edit/>
+                <Footer/>
             </Route>
+
+            <Route path="/Community">
+                <NavBar/>
+                <Community/>
+                <Footer/>
+            </Route>
+
+
+            <Route path="/Reservation/:hospitalName/:name/:medicalSubject">
+                <NavBar/>
+                <Route path={`/Reservation/:hospitalName/:name/:medicalSubject`}
+                   render = {(props) => <Reservation {...props}/>}>
+                </Route>
+                <Footer/>
+            </Route>
+
+
             <Route path="/TelReservation/:hospitalName/:name/:medicalSubject">
-                    <NavBar/>
-                    <Route path={`/TelReservation/:hospitalName/:name/:medicalSubject`}
-                       render = {(props) => <TelReservation {...props}/>}>
-                    </Route>
+                <NavBar/>
+                <Route path={`/TelReservation/:hospitalName/:name/:medicalSubject`}
+                   render = {(props) => <TelReservation {...props}/>}>
+                </Route>
 
-                    <Footer/>
+                <Footer/>
             </Route>
 
-
+            <Route path="/CarReservation/:addr/:name/:medicalSubject">
+                <NavBar/>
+                <Route path={`/CarReservation/:hospitalName/:name/:medicalSubject`}
+                       render = {(props) => <Reservation {...props}/>}>
+                </Route>
+                <Footer/>
+            </Route>
 
 
             <Route path="/SearchHospital">

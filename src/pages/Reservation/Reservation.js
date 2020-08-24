@@ -40,73 +40,73 @@ const Reservation = ({match}) =>  {
 
     <div>
 
-<MDBCol>
-  <br/><br/><br/>
-      <MDBCard 
-      style={{ width: "40%",
-               left: "35%",
-            }}>
-        <br/>      
-        <MDBCardTitle cascade className='text-center'>
-              <strong>방문진료 예약 </strong>
-            </MDBCardTitle>
-            <br/>  
-          <div className={"reservation"}>
-          <form className={classes.container} noValidate>
-         <TextField
-        id="datetime-local"
-        label="Reservation"
-        type="datetime-local"
-        value={selectedDate}
-        onChange={e => setSelectedDate(e.target.value)}
-        
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </form>
-          </div>
-            
-            <br/>  
-        <MDBCardBody>
-          
-        <h5 className="padding">            
-              병원 이름 : {match.params.hospitalName}{' '}            
-        </h5>
-        <br/>
-        <h5 className="padding">           
-              의사 : {match.params.name}{' '}          
-        </h5>
-        <br/>
-        <h5 className="padding">
-              진료과 : {match.params.medicalSubject}{' '}
-        </h5>
-        <br/>
-        <h5 className="padding">
-              예약 비용 : 5000원{' '}
-        </h5>
-        <br/>
+    <MDBCol>
+      <br/><br/><br/>
+          <MDBCard
+          style={{ width: "40%",
+                   left: "35%",
+                }}>
+            <br/>
+            <MDBCardTitle cascade className='text-center'>
+                  <strong>방문진료 예약 </strong>
+                </MDBCardTitle>
+                <br/>
+              <div className={"reservation"}>
+              <form className={classes.container} noValidate>
+             <TextField
+            id="datetime-local"
+            label="Reservation"
+            type="datetime-local"
+            value={selectedDate}
+            onChange={e => setSelectedDate(e.target.value)}
 
-        <br/>  
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </form>
+              </div>
 
-    <MDBRow>
-    <MDBCol md="4">
-    </MDBCol>
-    <MDBCol md="8">
-    <Payment
-     title={"방문진료"} 
-     hospitalName={match.params.hospitalName} 
-     name={match.params.name} 
-     medicalSubject={match.params.medicalSubject}
-     selectedDate={selectedDate}
-     />
-    </MDBCol>
-    </MDBRow>
-  
-    <br/>    
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
+                <br/>
+            <MDBCardBody>
+
+            <h5 className="padding">
+                  병원 이름 : {match.params.hospitalName}{' '}
+            </h5>
+            <br/>
+            <h5 className="padding">
+                  의사 : {match.params.name}{' '}
+            </h5>
+            <br/>
+            <h5 className="padding">
+                  진료과 : {match.params.medicalSubject}{' '}
+            </h5>
+            <br/>
+            <h5 className="padding">
+                  예약 비용(부가세포함) : 10000원{' '}
+            </h5>
+            <br/>
+
+            <br/>
+
+        <MDBRow>
+        <MDBCol md="4">
+        </MDBCol>
+        <MDBCol md="8">
+        <Payment
+         title={"방문진료"}
+         hospitalName={match.params.hospitalName}
+         name={match.params.name}
+         medicalSubject={match.params.medicalSubject}
+         selectedDate={selectedDate}
+         />
+        </MDBCol>
+        </MDBRow>
+
+        <br/>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
     </div>
 
   );

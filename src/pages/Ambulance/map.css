@@ -26,14 +26,16 @@
     width: 90%;
 }
 .map-subbtn{
-    width: 100px;
+    width: 160px;
     height: 100px;
     background-color: blue;
+    font-size: large;
 }
 .map-inibtn{
-    width: 100px;
+    width: 160px;
     height: 100px;
     background-color: crimson;
+    font-size: large;
 }
 .search_box{
     width :100%;
@@ -79,7 +81,7 @@
     max-width: 200px;
 }
 .my-1 col-auto{
-    width: 200px;
+    width: 250px;
 }
 
 .mapboxgl-popup-content {
@@ -136,6 +138,17 @@ h1 {
 /*.align-items-center{*/
 /*    margin-top: 150px;*/
 /*}*/
+
+.modal-btn-emergency{
+    background-color: crimson;
+    font-size: large;
+}
+.modal-btn-reservation{
+    background-color: #d2e3fc;
+    font-size: large;
+}
+
+
 .locate {
     top: 1rem;
     background: none;
