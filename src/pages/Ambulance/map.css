@@ -28,7 +28,7 @@
     position: absolute;
     top: 4rem;
     left: 50%;
-    height: 25px;
+    height: 35px;
     transform: translateX(-50%);
     width: 100%;
     max-width: 60%;
@@ -160,9 +160,7 @@ h1 {
 .map_form{
     margin-top: 150px;
 }
-/*.align-items-center{*/
-/*    margin-top: 150px;*/
-/*}*/
+
 
 .modal-btn-emergency{
     background-color: crimson;

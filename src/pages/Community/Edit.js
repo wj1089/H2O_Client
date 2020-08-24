@@ -24,7 +24,7 @@ const Edit = () => {
     const handleShow = () => setShow(true);
     const history = useHistory();
     const handleClose = () => {
-        history.push("/Community")
+        history.push("/Community/userBoard")
         setShow(false);
     }
     const handleQuill = (value)=>{
@@ -61,7 +61,7 @@ const Edit = () => {
                       .post(`http://localhost:8080/board/update`,comudata)
                       .then((res)=>{
                           console.log(res.data);
-                          window.location.href ="/Community"
+                          window.location.href ="/Community/userBoard"
                       })
                       .catch((err)=>{
                           throw err;
@@ -77,7 +77,7 @@ const Edit = () => {
                       .post(`http://localhost:8080/board/update`,comudata)
                       .then((res)=>{
                           console.log(res.data);
-                          window.location.href ="/Community"
+                          window.location.href ="/Community/CustomerServiceCenter"
                       })
                       .catch((err)=>{
                           throw err;
@@ -93,7 +93,7 @@ const Edit = () => {
                       .post(`http://localhost:8080/board/update`,comudata)
                       .then((res)=>{
                           console.log(res.data);
-                          window.location.href ="/Community"
+                          window.location.href ="/Community/QueAn"
                       })
                       .catch((err)=>{
                           throw err;
@@ -218,8 +218,6 @@ const Edit = () => {
                     <div className="input-group">
                         <Form>
                             <Form.Group>
-                                <Form.File id="exampleFormControlFile1" label="사진 및 동영상 올리기" />
-
                                 <Modal show={show} onHide={handleClose}>
                                     <Modal.Header closeButton>
                                         <Modal.Title>전송 확인</Modal.Title>
@@ -237,7 +235,7 @@ const Edit = () => {
                                     </Modal.Footer>
                                 </Modal>
                                 <Button className="Cancel" variant="danger">
-                                    <Link to="/Community">Cancel</Link>
+                                    <Link to="/Community/userboard">Cancel</Link>
                                 </Button>
                                 <Button className="Submit" variant="primary" onClick={handleShow}
                                 >Submit</Button>

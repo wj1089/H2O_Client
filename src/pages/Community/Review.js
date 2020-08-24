@@ -57,7 +57,7 @@ const Review = ({match}) => {
       .patch(`http://localhost:8080/board/modify/${boardNo}`, uploadData)
       .then((res) => {
         console.log(res.data);
-        history.push('/Community')
+        history.push('/Community/userBoard')
 
       })
       .catch((err) => {

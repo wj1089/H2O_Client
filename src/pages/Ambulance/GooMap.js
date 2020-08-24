@@ -3,7 +3,7 @@ import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline,} from "@react-go
 import usePlacesAutocomplete, {getGeocode,getLatLng,getZipCode} from "use-places-autocomplete";
 import Geocode from 'react-geocode'
 import {Combobox,ComboboxInput, ComboboxPopover,ComboboxList, ComboboxOption,} from "@reach/combobox";
-import { MDBCard, MDBCardBody,MDBCardText, MDBCol } from 'mdbreact';
+import { MDBCard,MDBCardText} from 'mdbreact';
 import './map.css'
 import "@reach/combobox/styles.css";
 import {Button, Col, Form, Row, Image} from "react-bootstrap";
@@ -20,8 +20,8 @@ const options = {
     zoomControl:true,
 };
 const center ={
-    lat:37.550928,
-    lng:126.867306
+    lat:37.564214,
+    lng:127.001699
 }
 
 const MAP_KEY ='AIzaSyDyYteoY6q3NQwsEHFrXfan_q_9VlIVsxk'
@@ -91,7 +91,7 @@ const GooMap = () =>{
 
     const panTo = useCallback(({lat, lng})=>{
         mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(13);
+        mapRef.current.setZoom(14);
     },[]);
 
     const onMapClick = useCallback((e)=>{
@@ -189,14 +189,14 @@ const GooMap = () =>{
     }
     
     return(
-        <>gs
+        <>
             <br/><br/><br/><br/>
             <Search panTo={panTo}/>
         <div className="map_container map_box">
             <GoogleMap
                 id="map"
                 mapContainerStyle={mapContainerStyle}
-                zoom={11}
+                zoom={14}
                 center={center}
                 options={options}
                 onLoad={onMapLoad}
