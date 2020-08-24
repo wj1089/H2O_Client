@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './Reservation.css'
-import Payment from "../../layout/Payment";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { MDBCard, MDBCardBody, MDBCardTitle,  MDBCol, MDBRow } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardTitle,  MDBCol } from 'mdbreact';
+import Payment from "../../layout/Payment";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const TelReservation = ({match}) =>  {
+const CarReservation = ({match}) =>  {
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth()+1; //January is 0!
@@ -35,6 +35,7 @@ const TelReservation = ({match}) =>  {
 
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(today)
+  const title = "응급차"
 
   return (
 
@@ -48,7 +49,7 @@ const TelReservation = ({match}) =>  {
           }}>
           <br/>
           <MDBCardTitle cascade className='text-center'>
-            <strong>화상진료 예약</strong>
+            <strong>{title} 예약</strong>
           </MDBCardTitle>
           <br/>
           <div className={"reservation"}>
@@ -71,39 +72,39 @@ const TelReservation = ({match}) =>  {
           <MDBCardBody>
 
             <h5 className="padding">
-              병원 이름 : {match.params.hospitalName}{' '}
+              병원 이름 : {match.params.name}{' '}
             </h5>
             <br/>
             <h5 className="padding">
-              의사 : {match.params.name}{' '}
+              출발지 : {match.params.startAddr}{' '}
             </h5>
             <br/>
             <h5 className="padding">
-              진료과 : {match.params.medicalSubject}{' '}
+              도착지 : {match.params.endAddr}{' '}
             </h5>
             <br/>
             <h5 className="padding">
-              예약 비용 : 5000원{' '}
+              우편번호 : {match.params.postcode}{' '}
             </h5>
             <br/>
-
+            <h5 className="padding">
+              내용 : {match.params.content}{' '}
+            </h5>
             <br/>
-
-            <MDBRow>
-              <MDBCol md="4">
-              </MDBCol>
-              <MDBCol md="8">
-                <Payment
-                  title={"화상진료"}
-                  hospitalName={match.params.hospitalName}
-                  name={match.params.name}
-                  medicalSubject={match.params.medicalSubject}
-                  selectedDate={selectedDate}
-                />
-              </MDBCol>
-            </MDBRow>
-
+            <h5 className="padding">
+              예약 비용 : 6000원{' '}
+            </h5>
             <br/>
+            <br/>
+            <Payment
+              title={title}
+              hospitalName={match.params.name}
+              startAddr={match.params.startAddr}
+              endAddr={match.params.endAddr}
+              postcode={match.params.postcode}
+              content={match.params.content}
+              selectedDate={selectedDate}
+            />
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
@@ -111,4 +112,4 @@ const TelReservation = ({match}) =>  {
 
   );
 }
-export default TelReservation
+export default CarReservation

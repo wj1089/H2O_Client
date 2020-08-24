@@ -1,15 +1,11 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-// import {InfoWindow} from "@react-google-maps/api";
-// import MapReservation from "./MapReservation"
-
+import { MDBBtn,MDBLink} from 'mdbreact';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import {Button} from "react-bootstrap";
 import './map.css'
 import { useHistory} from "react-router-dom";
-import {MDBBtn, MDBCardText} from "mdbreact";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -25,16 +21,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MapModal=({match})=> {
+const MapModal=(props)=> {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const history = useHistory()
+  console.log(props.name)
+  const [open, setOpen] = useState(false);
   // const [infoShow, setInfoShow] = useState(false)
   // const [searchInfoShow, setSearchInfoShow] = useState(false)
+  const [ selected, setSelected] = useState({})
+  const [ name, setName] =useState('')
+  const [ content, setContent] =useState('')
 
-
-
-
+  //출발
+  const [ searchedAddr,setSearchedAddr] = useState("");
+  //도착
+  const [ selectedAddr, setSelectedAddr] = useState("");
+  //우편번호
+  const [ selectedPc, setSelectedPc ] = useState("")
 
   const handleClose = () => {
     setOpen(false);
@@ -46,17 +49,21 @@ const MapModal=({match})=> {
   }
 
   const handleOpen = () => {
-    setOpen(true);
+    setOpen(true)
   };
+
   const emergancyButton = e =>{
     e.preventDefault();
     alert("중앙응급통제소와 연결을 위해, 전송받은 임시 비밀번호를 입력해주세요.")
     history.push('/TeleMedicine')
   }
+
   const reservationButton = e => {
     e.preventDefault();
     alert("선택하신 예약서비스로 넘어가겠습니다.")
-    handleOpen();
+    history.push(`/CarReservation/${props.content}/${props.name}/${props.startAddr}/${props.endAddr}/${props.postcode}`)
+    {/*  ${content.content}/${name.name}/${searchedAddr.startAddr}/${selectedAddr.endAddr}/
+            ${selectedPc.postcode}*/}
   }
 
   return (
@@ -93,14 +100,23 @@ const MapModal=({match})=> {
             >
               긴급서비스
             </MDBBtn>
+            {/*name={name}*/}
+            {/*content={content}*/}
+            {/*startAddr={searchedAddr}*/}
+            {/*endAddr={selectedAddr}*/}
+            {/*postcode={selectedPc}*/}
+          {/*  ${content.content}/${name.name}/${searchedAddr.startAddr}/${selectedAddr.endAddr}/
+            ${selectedPc.postcode}*/}
+            {sessionStorage.userData && (
 
-            {sessionStorage.userData &&
             <MDBBtn
               style ={{
                 right : '1.5%'
               }}
               gradient="blue" onClick={reservationButton} >진료 예약
-            </MDBBtn>}
+            </MDBBtn>
+
+            )}
 
             {!sessionStorage.userData &&
             <MDBBtn
@@ -109,10 +125,19 @@ const MapModal=({match})=> {
               }}
               gradient="blue" onClick={handleBack} >진료 예약
             </MDBBtn>}
-
           </div>
         </Fade>
       </Modal>
+
+      {/*{doctor.id &&*/}
+      {/*  <MDBBtn*/}
+      {/*    style = {{*/}
+      {/*      right : '25px',*/}
+      {/*      width : '140px'*/}
+      {/*    }}*/}
+      {/*    gradient="purple">방문진료</MDBBtn>*/}
+      {/*}*/}
+
     </div>
   );
 }

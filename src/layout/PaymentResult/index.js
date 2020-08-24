@@ -22,6 +22,12 @@ const PaymentResult = () => {
     doctor : useSelector(state => state.reservationReducer.reservationData.name),
     selectedDate : useSelector(state => state.reservationReducer.reservationData.selectedDate),
     medicalSubject : useSelector(state => state.reservationReducer.reservationData.medicalSubject),
+    startAddr : useSelector(state => state.reservationReducer.reservationData.startAddr),
+    endAddr : useSelector(state => state.reservationReducer.reservationData.endAddr),
+    postcode : useSelector(state => state.reservationReducer.reservationData.postcode),
+    content : useSelector(state => state.reservationReducer.reservationData.content),
+
+
   }
 
   const history = useHistory();
@@ -161,6 +167,53 @@ const PaymentResult = () => {
         </Modal>
             </>
             }
+
+        {isSuccessed && selectorData.title === "응급차"  &&
+        <>
+          <Button
+            className="textColor"
+            onClick={handleShow} >예약정보</Button>
+          <br/>
+          <Modal
+            show={show}
+            onHide={handleClose}
+
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            scrollable={Boolean(true)}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>{selectorData.title} 정보</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p> 예약날짜  &nbsp; {selectorData.selectedDate}</p>
+              <br/>
+
+              <p>고객  &emsp;&emsp; {JSON.parse(sessionStorage.userData).name}</p>
+              <br/>
+
+              <p>병원  &emsp;&emsp; {selectorData.hospitalName}</p>
+              <br/>
+
+              <p>출발지  &emsp; {selectorData.startAddr}</p>
+              <br/>
+
+              <p>도착지  &emsp; {selectorData.endAddr}</p>
+              <br/>
+
+              <p>우편번호  &emsp; {selectorData.postcode}</p>
+              <br/>
+
+              <p>내용  &emsp;&emsp; {selectorData.content}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <MDBBtn gradient="purple" onClick={handleClose}>
+                확인
+              </MDBBtn>
+            </Modal.Footer>
+          </Modal>
+        </>
+        }
 
         <br/>
 

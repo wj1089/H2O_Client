@@ -34,6 +34,11 @@ const Payment = (props) => {
     hospitalName : props.hospitalName,
     medicalSubject : props.medicalSubject,
     selectedDate : selectedDate,
+    startAddr : props.startAddr,
+    endAddr : props.endAddr,
+    postcode : props.postcode,
+    content : props.content
+
 }
 
   dispatch(reservationAction({reservationData}))

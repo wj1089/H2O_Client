@@ -19,8 +19,26 @@
     float : left;
     height : 74%;
 }
-.map_box{
-    width : 68%;
+/*.map_box{*/
+/*    width : 68%;*/
+/*    margin-top: 50%;*/
+
+/*}*/
+.mySearch {
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    height: 25px;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 60%;
+    z-index: 10;
+}
+.mySearch input {
+    padding: 0.5rem;
+    font-size: 2rem;
+    width: 100%;
+    position: absolute;
 }
 .map-textbtn{
     width: 90%;
@@ -117,6 +135,13 @@ h1 {
 .map-textbox{
     width: 500px;
 }
+.locate_img {
+    position: absolute;
+    top: 4rem;
+    right: 0.2rem;
+    width: 50px;
+    height: 50px;
+}
 .searchbox {
     position: absolute;
     top: 1rem;
@@ -132,9 +157,9 @@ h1 {
     font-size: 1.5rem;
     width: 100%;
 }
-/*.map_form{*/
-/*    margin-top: 150px;*/
-/*}*/
+.map_form{
+    margin-top: 150px;
+}
 /*.align-items-center{*/
 /*    margin-top: 150px;*/
 /*}*/
